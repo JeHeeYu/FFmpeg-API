@@ -176,3 +176,21 @@ is_output : 스트림 종류로 재생 시는 입력, 인코딩 시 출력
   0 : 입력용 스트림
   1 : 출력용 스트림
 ```
+
+```
+int av_find_best_stream(AVFormatContext *ic, enum AVMediaType type, int wanted_stream_nb, int related_stream, const struct AVCodec **decoder_ret, int flags)
+
+description
+스트림 중 최적의 스트림을 찾아 함수
+
+arguments
+ic : 파일의 AVFormatContext 핸들러
+type : 파일 미디어 타입
+  AVMEDIA_TYPE_AUDIO
+  AVMEDIA_TYPE_VIDEO
+  AVMEDIA_TYPE_SUBTITLE
+wanted_stream_nb : 찾을 스트림의 인덱스로 원하는 특정 스트림 지정 가능
+related_stream : 원하는 스트림과 관련된 스트림으로, 일반적으로 0 또는 -1 설정
+decoder_ret : 찾은 스트림에 해당하는 디코더를 저장할 포인터로, 미사용 시 NULL 지정
+flags : 추가적인 플래그로, 일반적으로 0 사용
+```
