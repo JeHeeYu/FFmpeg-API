@@ -122,14 +122,14 @@ bit_rate 초당 비트레이트
 
 ```
 int avformat_open_input(AVFormatContext **ps, const char *url,
-                        const AVInputFormat *fmt, AVDictionary **options);
+                        const AVInputFormat *fmt, AVDictionary **options)
 
 description
 동영상 및 파일을 여는 함수
 
 arguments
 ps : 헤더 정보를 저장할 구조체로, NULL로 지정 시 내부적으로 구조체를 할당하여 리턴
-url : 동영상을 읽을 파일 경로
+url : 파일 경로
 fmt : 입력 포맷으로, NULL 지정 시 자동 판별
 options : 옵션값의 배열로, 미사용 시 NULL
 
@@ -139,7 +139,7 @@ return
 ```
 
 ```
-int avformat_find_stream_info(AVFormatContext * ic, AVDictionary ** options );
+int avformat_find_stream_info(AVFormatContext * ic, AVDictionary ** options )
 
 description
 동영상의 스트림을 조사하는 함수
@@ -161,4 +161,18 @@ description
 
 arguments
 s : 해제할 파일 핸들러
+```
+
+```
+void av_dump_format(AVFormatContext *ic, int index, const char *url, int is_output)
+
+description
+스트림의 정보를 확인하는 함수
+
+arguments
+ic : 파일의 AVFormatContext 핸들러
+url : 파일 경로
+is_output : 스트림 종류로 재생 시는 입력, 인코딩 시 출력
+  0 : 입력용 스트림
+  1 : 출력용 스트림
 ```
