@@ -1,8 +1,9 @@
 # avcodec.h API 정리
 
-```
-AVCodecContext *avcodec_alloc_context3(const AVCodec *codec)
 
+### AVCodecContext *avcodec_alloc_context3(const AVCodec *codec)
+
+```
 description
 Codec Context를 할당 및 초기화 하는 함수
 
@@ -14,9 +15,11 @@ AVCodecContext : 초기화된 CodecContext 구조체
 NULL : 실패
 ```
 
-```
-int avcodec_parameters_to_context(AVCodecContext *codec, const AVCodecParameters *par)
+<br>
 
+### int avcodec_parameters_to_context(AVCodecContext *codec, const AVCodecParameters *par)
+
+```
 description
 Codec Parameter의 정보를 CodecContext에 복사하는 함수
 
@@ -29,9 +32,11 @@ return
 -1 : 실패
 ```
 
-```
-int avcodec_open2(AVCodecContext *avctx, const AVCodec *codec, AVDictionary **options)
+<br>
 
+### int avcodec_open2(AVCodecContext *avctx, const AVCodec *codec, AVDictionary **options)
+
+```
 description
 Codec을 열어 디코더 또는 인코더를 초기화하는 함수
 
@@ -45,9 +50,11 @@ return
 -1 : 실패
 ```
 
-```
-void avcodec_free_context(AVCodecContext **avctx)
+<br>
 
+### void avcodec_free_context(AVCodecContext **avctx)
+
+```
 description
 사용 중인 AVCodecContext 구조체의 메모리를 해제하는 함수
 
