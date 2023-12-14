@@ -221,7 +221,6 @@ int av_read_frame(AVFormatContext *s, AVPacket *pkt)
 #### 함수 설명
 
 ```
-description
 AVFormatContext 구조체에서 다음으로 사용 가능한 프레임을 읽어 오는 함수
 ```
 
