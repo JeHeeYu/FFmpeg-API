@@ -1,5 +1,6 @@
 # avformat.h API 정리
 
+## 함수
 - [av_read_frame](#av_read_frame)
 
 ## 구조체
@@ -209,19 +210,72 @@ flags : 추가적인 플래그로, 일반적으로 0 사용
 
 <br>
 
-### av_read_frame
+## av_read_frame
+
+#### 함수 원형
 
 ```
 int av_read_frame(AVFormatContext *s, AVPacket *pkt)
+```
 
+#### 함수 설명
+
+```
 description
 AVFormatContext 구조체에서 다음으로 사용 가능한 프레임을 읽어 오는 함수
+```
 
-arguments
+#### 매개 변수
+
+```
 s : 미디어 파일의 형식을 나타내는 컨테이너 구조체로, 이 구조체에는 미디어 파일의 메타데이터 및 스트림 정보 등이 포함되어 있음
 pkt : 읽어온 프레임의 데이터를 저장할 패킷 구조체로 패킷에는 읽어온 프렝미의 데이터, 해당 프레임의 타임스탬프, 소스 스트림 인덱스 등이 포함됨
+```
 
+#### 리턴
+
+```
 return
 0 : 성공
 -1 :
+```
+
+#### 동작 방법
+
+```
+1. 함수가 호출되면 현재 포인터가 가리키는 컨테이너(AVFormatContext)에서 다음 사용 가능한 패킷을 찾음
+2. 찾은 패킷 데이터를 AVPacket 구조체에 복사
+3. 함수 호출 시 다음 프레임으로 이동하며 파일의 끝에 도달하면 AVERROR_EOF 리턴
+```
+
+#### 예외 사항
+
+```
+- 파일 끝(End of File)에 도달 시 함수는 AVERROR_EOF를 리턴하며 파일을 모두 읽었다는 의미임
+- 에러가 발생하면 해당 에러 코드를 리턴하고, 사용자는 av_strerror 함수 등을 사용하여 메시지를 얻을 수 있음
+- 함수 호출 후 av_packet_unref 함수를 이용하여 메모리를 해제해야 
+```
+
+#### 사용 예제
+
+```
+AVFormatContext *formatContext;
+AVPacket packet;
+
+// 미디어 파일 열기
+if (avformat_open_input(&formatContext, "example.mp4", NULL, NULL) < 0) {
+    // 오류 처리
+}
+
+// 다음 프레임 가져오기
+while (av_read_frame(formatContext, &packet) >= 0) {
+    // 패킷 처리 (프레임 데이터, 타임스탬프, 스트림 인덱스 등이 포함됨)
+    // ...
+
+    // 처리가 완료되면 패킷 데이터를 해제
+    av_packet_unref(&packet);
+}
+
+// 미디어 파일 닫기
+avformat_close_input(&formatContext);
 ```
