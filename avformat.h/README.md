@@ -1,6 +1,6 @@
 # avformat.h API 정리
 
-- [Jehee](#jehee)
+- [av_read_frame](#av_read_frame)
 
 ## 구조체
 
@@ -209,7 +209,7 @@ flags : 추가적인 플래그로, 일반적으로 0 사용
 
 <br>
 
-## jehee
+### av_read_frame
 
 ```
 int av_read_frame(AVFormatContext *s, AVPacket *pkt)
