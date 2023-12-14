@@ -118,6 +118,8 @@ duration : 재생 시간으로 AV_TIME_BASE 단위
 bit_rate 초당 비트레이트
 ```
 
+<br>
+
 ## 함수
 
 ```
@@ -138,6 +140,8 @@ return
 -1 : 실패
 ```
 
+<br>
+
 ```
 int avformat_find_stream_info(AVFormatContext * ic, AVDictionary ** options )
 
@@ -153,6 +157,8 @@ return
 -1 : 실패
 ```
 
+<br>
+
 ```
 void avformat_close_input(AVFormatContext **s)
 
@@ -162,6 +168,8 @@ description
 arguments
 s : 해제할 파일 핸들러
 ```
+
+<br>
 
 ```
 void av_dump_format(AVFormatContext *ic, int index, const char *url, int is_output)
@@ -176,6 +184,8 @@ is_output : 스트림 종류로 재생 시는 입력, 인코딩 시 출력
   0 : 입력용 스트림
   1 : 출력용 스트림
 ```
+
+<br>
 
 ```
 int av_find_best_stream(AVFormatContext *ic, enum AVMediaType type, int wanted_stream_nb, int related_stream, const struct AVCodec **decoder_ret, int flags)
@@ -193,4 +203,23 @@ wanted_stream_nb : 찾을 스트림의 인덱스로 원하는 특정 스트림 �
 related_stream : 원하는 스트림과 관련된 스트림으로, 일반적으로 0 또는 -1 설정
 decoder_ret : 찾은 스트림에 해당하는 디코더를 저장할 포인터로, 미사용 시 NULL 지정
 flags : 추가적인 플래그로, 일반적으로 0 사용
+```
+
+<br>
+
+### av_read_frame
+
+```
+int av_read_frame(AVFormatContext *s, AVPacket *pkt)
+
+description
+AVFormatContext 구조체에서 다음으로 사용 가능한 프레임을 읽어 오는 함수
+
+arguments
+s : 미디어 파일의 형식을 나타내는 컨테이너 구조체로, 이 구조체에는 미디어 파일의 메타데이터 및 스트림 정보 등이 포함되어 있음
+pkt : 읽어온 프레임의 데이터를 저장할 패킷 구조체로 패킷에는 읽어온 프렝미의 데이터, 해당 프레임의 타임스탬프, 소스 스트림 인덱스 등이 포함됨
+
+return
+0 : 성공
+-1 :
 ```
