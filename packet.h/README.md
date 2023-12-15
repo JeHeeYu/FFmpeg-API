@@ -5,6 +5,7 @@
 
 - [av_packet_unref](#av_packet_unref)
 - [av_packet_alloc](#av_packet_alloc)
+- [av_packet_free](#av_packet_free)
 
 
 ## av_packet_unref 
