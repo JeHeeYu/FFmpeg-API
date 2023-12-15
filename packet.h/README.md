@@ -35,5 +35,20 @@ pkt : 초기화 및 메모리 해제할 AVPacket 구조체에 대한 포인터
 2. AVPacket이 가지고 있는 데이터, 사이즈, 시간 정보 등이 초기 상태로 돌아감
 ```
 
+#### 예제 코드
+```
+#include <libavcodec/avcodec.h>
+
+int main() {
+    // 패킷 초기화
+    AVPacket pkt;
+    
+    // 패킷을 사용한 후 초기화 및 메모리 해제
+    av_packet_unref(&pkt);
+    
+    return 0;
+}
+```
+
 <br>
 
